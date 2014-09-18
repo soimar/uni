@@ -82,45 +82,88 @@ public class player : MonoBehaviour {
 			//transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
 		}
 		
-		if (playerState == PLAYER_STATE.WALK)
+
+		
+		if(Input.GetKeyUp(KeyCode.UpArrow) ||
+		   Input.GetKeyUp(KeyCode.DownArrow) ||
+		   Input.GetKeyUp(KeyCode.RightArrow) ||
+		   Input.GetKeyUp(KeyCode.LeftArrow))
 		{
-			if(Input.GetKeyUp(KeyCode.UpArrow) ||
-			   Input.GetKeyUp(KeyCode.DownArrow) ||
-			   Input.GetKeyUp(KeyCode.RightArrow) ||
-			   Input.GetKeyUp(KeyCode.LeftArrow))
+			if(!Input.GetKey(KeyCode.UpArrow) &&
+			   !Input.GetKey(KeyCode.DownArrow) &&
+			   !Input.GetKey(KeyCode.RightArrow) &&
+			   !Input.GetKey(KeyCode.LeftArrow))
 			{
-				ani.SetTrigger("normal");
-				playerState = PLAYER_STATE.NORMAL;
+				if (playerState == PLAYER_STATE.WALK)
+				{
+					ani.SetTrigger("normal");
+					playerState = PLAYER_STATE.NORMAL;
+				}
 			}
-		}
-		else if (playerState == PLAYER_STATE.PUSH)
-		{
-			if (Input.GetKeyUp(KeyCode.Z))
-			{
-				ani.SetTrigger("normal");
-				playerState = PLAYER_STATE.NORMAL;
-			}
+				
 		}
 		
+		if (Input.GetKeyUp(KeyCode.Z))
+		{
+			print ("Z key up1");
+			if(playerState == PLAYER_STATE.PUSH)
+			{
+				print ("Z key up2");
+				
+				ani.SetTrigger("normal");
+				playerState = PLAYER_STATE.NORMAL;
+				
+				DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+				joint.enabled = false;
+				if (joint.connectedBody)
+				{
+					joint.connectedBody.rigidbody2D.mass = 2000;
+				}
+			}
+			/*
+			else if(playerState == PLAYER_STATE.PUSH)
+			{
+				ani.SetTrigger("normal");
+				playerState = PLAYER_STATE.NORMAL;
+				
+
+			}
+/**/			
+			
+		}
+				
+						
 	}
 	
 	
 	
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		print ("OK");
-		
-		if(playerState == PLAYER_STATE.PUSH)
-		{
-			if(collision.gameObject.tag == "box")
+	
+	
+	void OnCollisionStay2D(Collision2D collision)
+	{		
+			if(playerState == PLAYER_STATE.PUSH)
 			{
+				if(collision.gameObject.tag == "box")
+				{
+					DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+					joint.enabled = true;
+				
+					collision.gameObject.rigidbody2D.mass = 1;
+				
+					joint.connectedBody = collision.rigidbody;
+				
+				}
+			}
+		
+			/*else
+			{
+				collision.gameObject.rigidbody2D.mass = 2000;
 				DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
-			
-				joint.connectedBody = collision.rigidbody;
+				joint.enabled = false;
 				
 			}
-		}
-		
+			*/
+	
 	}
 	
 	
