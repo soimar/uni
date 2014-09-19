@@ -11,6 +11,7 @@ public class player : MonoBehaviour {
 		PUSH
 	};
 		
+	
 	PLAYER_STATE playerState = PLAYER_STATE.NORMAL;		
 	
 	
@@ -28,54 +29,91 @@ public class player : MonoBehaviour {
 		{
 			if (playerState != PLAYER_STATE.WALK)
 			{
-				ani.SetTrigger("walk");
+				ani.SetBool("walk",true);
 				playerState = PLAYER_STATE.WALK;
 			}
 			
-			transform.rotation = Quaternion.Euler( new Vector3(0,0,90));
-			transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();			
+			if (!joint.enabled)
+			{
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,90));
+				transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			}
+			else
+			{
+				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+			}
 			
 		}
 		if(Input.GetKey(KeyCode.RightArrow))
 		{
 			if (playerState != PLAYER_STATE.WALK)
 			{
-				ani.SetTrigger("walk");
+				
+				ani.SetBool("walk",true);
 				playerState = PLAYER_STATE.WALK;
 			}
-
-			transform.rotation = Quaternion.Euler( new Vector3(0,0,270));
-			transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			
+			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+			if (!joint.enabled)
+			{						
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,270));
+				transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			}
+			else
+			{
+				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+			}
 		}
 		
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
 			if (playerState != PLAYER_STATE.WALK)
 			{
-				ani.SetTrigger("walk");
+				
+				ani.SetBool("walk",true);
 				playerState = PLAYER_STATE.WALK;
 			}
-
-			transform.rotation = Quaternion.Euler( new Vector3(0,0,360));
-			transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			
+			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+			if (!joint.enabled)
+			{
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,360));
+				transform.Translate(Vector3.up * 15 * Time.deltaTime);
+			}
+			else
+			{
+				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+			}
+			
+			
 		}
 		if(Input.GetKey(KeyCode.DownArrow))
 		{
 			if (playerState != PLAYER_STATE.WALK)
 			{
-				ani.SetTrigger("walk");
+				ani.SetBool("walk",true);
 				playerState = PLAYER_STATE.WALK;
 			}
-
-			transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
-			transform.Translate(Vector3.down * -15 * Time.deltaTime);
+			
+			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+			if (!joint.enabled)
+			{
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
+				transform.Translate(Vector3.down * -15 * Time.deltaTime);
+			}
+			else
+			{
+				transform.Translate(Vector3.down * 15 * Time.deltaTime);
+			}
 		}
 		
 		if(Input.GetKey(KeyCode.Z))
 		{
+			ani.SetBool("push",true);
+			
 			if (playerState != PLAYER_STATE.PUSH)
 			{
-				ani.SetTrigger("push");
 				playerState = PLAYER_STATE.PUSH;
 			}
 
@@ -94,9 +132,11 @@ public class player : MonoBehaviour {
 			   !Input.GetKey(KeyCode.RightArrow) &&
 			   !Input.GetKey(KeyCode.LeftArrow))
 			{
+				ani.SetBool("walk",false);
+				
 				if (playerState == PLAYER_STATE.WALK)
 				{
-					ani.SetTrigger("normal");
+					//walk = false;
 					playerState = PLAYER_STATE.NORMAL;
 				}
 			}
@@ -105,20 +145,19 @@ public class player : MonoBehaviour {
 		
 		if (Input.GetKeyUp(KeyCode.Z))
 		{
-			print ("Z key up1");
-			if(playerState == PLAYER_STATE.PUSH)
+			ani.SetBool("push",false);
+			
+			if(playerState != PLAYER_STATE.NORMAL)
 			{
-				print ("Z key up2");
-				
-				ani.SetTrigger("normal");
-				playerState = PLAYER_STATE.NORMAL;
-				
 				DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
 				joint.enabled = false;
+				
 				if (joint.connectedBody)
 				{
 					joint.connectedBody.rigidbody2D.mass = 2000;
 				}
+			
+				playerState = PLAYER_STATE.NORMAL;
 			}
 			/*
 			else if(playerState == PLAYER_STATE.PUSH)
