@@ -38,10 +38,16 @@ public class player : MonoBehaviour {
 			{
 				transform.rotation = Quaternion.Euler( new Vector3(0,0,90));
 				transform.Translate(Vector3.up * 15 * Time.deltaTime);
+				//rigidbody2D.AddForce( new Vector3(1,0,0) * -150 * Time.deltaTime );
 			}
 			else
 			{
-				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,-90));
+				//transform.Translate(new Vector3(1,0,0) * -15 * Time.deltaTime);
+				transform.position += new Vector3(1,0,0) * -15 * Time.deltaTime;
+				//rigidbody2D.AddForce( new Vector3(1,0,0) * -150 * Time.deltaTime );
+				
+				
 			}
 			
 		}
@@ -56,13 +62,17 @@ public class player : MonoBehaviour {
 			
 			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
 			if (!joint.enabled)
-			{						
+			{
 				transform.rotation = Quaternion.Euler( new Vector3(0,0,270));
 				transform.Translate(Vector3.up * 15 * Time.deltaTime);
+				//rigidbody2D.AddForce( new Vector3(1,0,0) * 150 * Time.deltaTime );
 			}
 			else
 			{
-				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,-270));
+				//transform.Translate(new Vector3(1,0,0) * 15 * Time.deltaTime);
+				transform.position += new Vector3(1,0,0) * 15 * Time.deltaTime;
+				//rigidbody2D.AddForce( new Vector3(1,0,0) * 150 * Time.deltaTime );
 			}
 		}
 		
@@ -83,7 +93,8 @@ public class player : MonoBehaviour {
 			}
 			else
 			{
-				transform.Translate(Vector3.up * -15 * Time.deltaTime);
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
+				transform.position += new Vector3(0,1,0) * 15 * Time.deltaTime;
 			}
 			
 			
@@ -104,7 +115,9 @@ public class player : MonoBehaviour {
 			}
 			else
 			{
-				transform.Translate(Vector3.down * 15 * Time.deltaTime);
+				//transform.Translate(Vector3.down * 15 * Time.deltaTime);
+				transform.rotation = Quaternion.Euler( new Vector3(0,0,-180));
+				transform.position += new Vector3(0,1,0) * -15 * Time.deltaTime;
 			}
 		}
 		
@@ -115,6 +128,14 @@ public class player : MonoBehaviour {
 			if (playerState != PLAYER_STATE.PUSH)
 			{
 				playerState = PLAYER_STATE.PUSH;
+			}
+			
+			DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
+			if (joint.enabled)
+			{
+				Vector2 length = joint.connectedBody.position - new Vector2(transform.position.x, transform.position.y);
+				if (5 < length.magnitude)
+					joint.enabled = false;				
 			}
 
 			//transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
@@ -170,6 +191,7 @@ public class player : MonoBehaviour {
 /**/			
 			
 		}
+		
 				
 						
 	}
@@ -187,7 +209,7 @@ public class player : MonoBehaviour {
 					DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
 					joint.enabled = true;
 				
-					collision.gameObject.rigidbody2D.mass = 1;
+					collision.gameObject.rigidbody2D.mass = 0;
 				
 					joint.connectedBody = collision.rigidbody;
 				

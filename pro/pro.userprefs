@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\box_here.cs">
     <Files>
-      <File FileName="Assets\player.cs" Line="100" Column="1" />
+      <File FileName="Assets\player.cs" Line="217" Column="5" />
+      <File FileName="Assets\box_here.cs" Line="17" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
