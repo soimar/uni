@@ -42,12 +42,13 @@ public class player : MonoBehaviour {
 			}
 			else
 			{
-				transform.rotation = Quaternion.Euler( new Vector3(0,0,-90));
-				//transform.Translate(new Vector3(1,0,0) * -15 * Time.deltaTime);
 				transform.position += new Vector3(1,0,0) * -15 * Time.deltaTime;
-				//rigidbody2D.AddForce( new Vector3(1,0,0) * -150 * Time.deltaTime );
-				
-				
+
+				Vector2 dir = joint.connectedBody.position - new Vector2(transform.position.x,
+					transform.position.y);
+				dir.Normalize();
+				transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), 
+					new Vector3(dir.x, dir.y, 0));				
 			}
 			
 		}
@@ -69,10 +70,18 @@ public class player : MonoBehaviour {
 			}
 			else
 			{
-				transform.rotation = Quaternion.Euler( new Vector3(0,0,-270));
 				//transform.Translate(new Vector3(1,0,0) * 15 * Time.deltaTime);
-				transform.position += new Vector3(1,0,0) * 15 * Time.deltaTime;
 				//rigidbody2D.AddForce( new Vector3(1,0,0) * 150 * Time.deltaTime );
+				
+				transform.position += new Vector3(1,0,0) * 15 * Time.deltaTime;
+
+				Vector2 dir = joint.connectedBody.position - new Vector2(transform.position.x,
+					transform.position.y);
+				dir.Normalize();
+				transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), 
+					new Vector3(dir.x, dir.y, 0));				
+				
+
 			}
 		}
 		
@@ -93,8 +102,15 @@ public class player : MonoBehaviour {
 			}
 			else
 			{
-				transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
 				transform.position += new Vector3(0,1,0) * 15 * Time.deltaTime;
+
+				Vector2 dir = joint.connectedBody.position - new Vector2(transform.position.x,
+					transform.position.y);
+				dir.Normalize();
+				transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), 
+					new Vector3(dir.x, dir.y, 0));				
+		
+
 			}
 			
 			
@@ -116,8 +132,15 @@ public class player : MonoBehaviour {
 			else
 			{
 				//transform.Translate(Vector3.down * 15 * Time.deltaTime);
-				transform.rotation = Quaternion.Euler( new Vector3(0,0,-180));
 				transform.position += new Vector3(0,1,0) * -15 * Time.deltaTime;
+
+				Vector2 dir = joint.connectedBody.position - new Vector2(transform.position.x,
+					transform.position.y);
+				dir.Normalize();
+				transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), 
+					new Vector3(dir.x, dir.y, 0));				
+		
+
 			}
 		}
 		

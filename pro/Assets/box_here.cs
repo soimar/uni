@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class box_here : MonoBehaviour {
-
+public GameObject box;
+public GameObject door;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -14,11 +16,15 @@ public class box_here : MonoBehaviour {
 	
 	}
 	
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnTriggerEnter2D(Collider2D collision)
 	{		
-		if(collision.gameObject.tag == "box")
+		string colliderName = collision.collider2D.name;
+		
+		if(colliderName == "box")
 		{
-			print(" ok ");				
+			box.SetActive(false);
+			door.SetActive(false);
+			this.gameObject.SetActive(false);
 		}
 	}
 }
