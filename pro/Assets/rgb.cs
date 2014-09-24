@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rgb : MonoBehaviour {
-public GameObject char_0;	
-public Animator ani;
 public enum COLOR_STATE {
 		RED,
 		GREEN,
 		BLUE,
 		
 	};
+
+public class rgb : MonoBehaviour {
+public GameObject char_0;	
+public Animator ani;
+
 		
 	COLOR_STATE ColorState = COLOR_STATE.RED;
+	
+	
 	
 	// Use this for initialization
 	void Start () {

@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: d321b2f1b3b7bbe4f8774590ff85e914
+guid: 1f8ae723d8bf4be49bb2686785b16d7f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: char_0
-    21300002: char_1
-    21300004: char_2
-    21300006: char_3
-    21300008: char_4
-    21300010: char_5
-    21300012: char_6
-    21300014: char_7
-    21300016: char_8
-    21300018: char_9
+    21300000: char_stone_0
+    21300002: char_stone_1
+    21300004: char_stone_2
+    21300006: char_stone_3
+    21300008: char_stone_4
+    21300010: char_stone_5
+    21300012: char_stone_6
+    21300014: char_stone_7
+    21300016: char_stone_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,103 +52,93 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: char_0
+    - name: char_stone_0
       rect:
         serializedVersion: 2
         x: 85
-        y: 2306
+        y: 611
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_1
+    - name: char_stone_1
       rect:
         serializedVersion: 2
-        x: 583
-        y: 2306
+        x: 581
+        y: 608
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_2
+    - name: char_stone_2
       rect:
         serializedVersion: 2
-        x: 982
-        y: 2306
+        x: 1060
+        y: 608
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_3
+    - name: char_stone_3
       rect:
         serializedVersion: 2
-        x: 1468
-        y: 2306
+        x: 1547
+        y: 611
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_4
+    - name: char_stone_4
       rect:
         serializedVersion: 2
-        x: 1879
-        y: 2306
+        x: 2029
+        y: 611
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_5
+    - name: char_stone_5
       rect:
         serializedVersion: 2
-        x: 2282
-        y: 2306
+        x: 2519
+        y: 608
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_6
+    - name: char_stone_6
       rect:
         serializedVersion: 2
-        x: 2693
-        y: 2306
+        x: 581
+        y: 34
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_7
+    - name: char_stone_7
       rect:
         serializedVersion: 2
-        x: 3137
-        y: 2306
+        x: 1060
+        y: 34
         width: 361
         height: 394
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_8
+    - name: char_stone_8
       rect:
         serializedVersion: 2
-        x: 583
-        y: 1725
-        width: 361
-        height: 394
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: char_9
-      rect:
-        serializedVersion: 2
-        x: 982
-        y: 1725
-        width: 361
-        height: 394
+        x: 1654
+        y: 385
+        width: 86
+        height: 86
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
