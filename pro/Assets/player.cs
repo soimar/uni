@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class player : MonoBehaviour {
 	public Animator ani;
 	public enum PLAYER_STATE {
 		NORMAL,
 		WALK,
 		JUMP,
-		SHOOT,
 		PUSH
 	};
+	
+public GUITexture stone;
+	
+	bool item = false;
+	
+	
 		
-	
 	PLAYER_STATE playerState = PLAYER_STATE.NORMAL;		
-	
-	
+		
 	// Use this for initialization
 	void Start () {
 	
@@ -144,6 +149,9 @@ public class player : MonoBehaviour {
 			}
 		}
 		
+		
+		// push
+		
 		if(Input.GetKey(KeyCode.Z))
 		{
 			ani.SetBool("push",true);
@@ -164,7 +172,73 @@ public class player : MonoBehaviour {
 			//transform.rotation = Quaternion.Euler( new Vector3(0,0,180));
 		}
 		
-
+		
+		//shoot
+		
+		if(Input.GetKeyDown(KeyCode.X))
+		{
+			ani.SetTrigger("shoot");
+		}
+		
+		if(Input.GetKeyUp(KeyCode.X))
+		{
+			playerState = PLAYER_STATE.NORMAL;
+		}
+		
+		
+		//jump
+		
+		if(Input.GetKeyDown(KeyCode.C))
+		{
+			if(playerState == PLAYER_STATE.NORMAL)
+			{
+				ani.SetBool("jump",true);
+				//ani.SetBool("normal",false);
+				playerState = PLAYER_STATE.JUMP;
+			}
+		}
+		
+		if(Input.GetKeyUp(KeyCode.C))
+		{
+			if(playerState == PLAYER_STATE.JUMP)
+			{
+				//ani.SetBool("normal",true);
+				ani.SetBool("jump",false);
+				playerState = PLAYER_STATE.NORMAL;
+			}
+		}
+		
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			
+			if(item == true)
+			{
+				ani.SetBool("item",false);
+				ani.SetBool("normal",true);
+				
+				item = false;
+				stone.gameObject.SetActive(false);
+				
+				
+			}			
+			else if(item == false)
+			{
+				ani.SetBool("item",true);
+				ani.SetBool("normal",false);
+				
+				item = true;
+				stone.gameObject.SetActive(true);
+			}
+		
+		}
+		
+		//if(Input.GetKeyUp(KeyCode.Space))
+		//{
+			
+		//}
+		
+		
+		//move KeyUp
 		
 		if(Input.GetKeyUp(KeyCode.UpArrow) ||
 		   Input.GetKeyUp(KeyCode.DownArrow) ||
@@ -208,13 +282,10 @@ public class player : MonoBehaviour {
 			{
 				ani.SetTrigger("normal");
 				playerState = PLAYER_STATE.NORMAL;
-				
-
 			}
 /**/			
-			
 		}
-		
+	
 				
 						
 	}
