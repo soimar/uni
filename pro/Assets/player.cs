@@ -12,7 +12,8 @@ public class player : MonoBehaviour {
 		PUSH
 	};
 	
-public GUITexture stone;
+public GUITexture GUI_stone;
+public GameObject stone;
 	
 	bool item = false;
 	
@@ -210,27 +211,17 @@ public GUITexture stone;
 		
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			
 			if(item == true)
-			{
-				ani.SetBool("item",false);
-				ani.SetBool("normal",true);
-				
-				item = false;
-				stone.gameObject.SetActive(false);
-				
-				
-			}			
-			else if(item == false)
 			{
 				ani.SetBool("item",true);
 				ani.SetBool("normal",false);
-				
-				item = true;
-				stone.gameObject.SetActive(true);
+					
+				item = false;
+				GUI_stone.gameObject.SetActive(true);
+				stone.gameObject.SetActive(false);
 			}
-		
 		}
+		
 		
 		//if(Input.GetKeyUp(KeyCode.Space))
 		//{
@@ -309,19 +300,30 @@ public GUITexture stone;
 				
 				}
 			}
-		
-			/*else
-			{
-				collision.gameObject.rigidbody2D.mass = 2000;
-				DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
-				joint.enabled = false;
+			
+			if(Input.GetKeyDown(KeyCode.Space))
+			{		
+			
+				if(collision.gameObject.tag == "item_stone")
+				{
+					if(item == false)
+					{
+						ani.SetBool("item",false);
+						ani.SetBool("normal",true);
+				
+						item = true;
+						GUI_stone.gameObject.SetActive(false);
+						stone.gameObject.SetActive(true);
+					}			
+				}
+				
 				
 			}
-			*/
+		
+			
 	
 	}
 	
-	
-	
+
 	
 }
