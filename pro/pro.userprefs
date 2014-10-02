@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player.cs">
     <Files>
-      <File FileName="Assets\player.cs" Line="221" Column="39" />
-      <File FileName="Assets\GameManager.cs" Line="10" Column="1" />
-      <File FileName="Assets\box_here.cs" Line="5" Column="1" />
+      <File FileName="Assets\player.cs" Line="185" Column="73" />
+      <File FileName="Assets\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\box_here.cs" Line="1" Column="1" />
       <File FileName="Assets\rgb.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

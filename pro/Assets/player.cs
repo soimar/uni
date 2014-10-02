@@ -16,6 +16,7 @@ public GUITexture GUI_stone;
 public GameObject stone;
 	
 	bool item = false;
+	bool coll_stone = false;
 	
 	
 		
@@ -179,6 +180,10 @@ public GameObject stone;
 		if(Input.GetKeyDown(KeyCode.X))
 		{
 			ani.SetTrigger("shoot");
+		
+			stone.gameObject.SetActive(true);
+			stone.transform.position = transform.position + transform.forward * 5;
+			stone.rigidbody2D.AddForce(new Vector2(transform.position.x, transform.position.y) * 2);
 		}
 		
 		if(Input.GetKeyUp(KeyCode.X))
@@ -210,23 +215,36 @@ public GameObject stone;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			if(item == true)
+		{	
+			if(item == false && coll_stone == true)
 			{
-				ani.SetBool("item",true);
+				ani.SetBool("item", true);
 				ani.SetBool("normal",false);
 					
-				item = false;
+				StartCoroutine("Wait2", 1);
+					
+				item = true;
 				GUI_stone.gameObject.SetActive(true);
 				stone.gameObject.SetActive(false);
+				
 			}
+			else if(item == true)
+			{
+				ani.SetBool("item",false);
+				ani.SetBool("normal",true);
+				
+				item = false;
+				GUI_stone.gameObject.SetActive(false);
+				stone.gameObject.SetActive(true);
+				
+				stone.transform.position = transform.position;
+				
+				coll_stone = false;
+				
+				
+			}			
 		}
 		
-		
-		//if(Input.GetKeyUp(KeyCode.Space))
-		//{
-			
-		//}
 		
 		
 		//move KeyUp
@@ -283,6 +301,11 @@ public GameObject stone;
 	
 	
 	
+	public IEnumerator Wait2(float delayTime)
+	{
+		yield return new WaitForSeconds(delayTime);
+	}
+	
 	
 	
 	void OnCollisionStay2D(Collision2D collision)
@@ -302,21 +325,15 @@ public GameObject stone;
 			}
 			
 			if(Input.GetKeyDown(KeyCode.Space))
-			{		
-			
+			{	
 				if(collision.gameObject.tag == "item_stone")
-				{
-					if(item == false)
-					{
-						ani.SetBool("item",false);
-						ani.SetBool("normal",true);
-				
-						item = true;
-						GUI_stone.gameObject.SetActive(false);
-						stone.gameObject.SetActive(true);
-					}			
+				{	
+					coll_stone = true;
 				}
-				
+				else
+				{
+					coll_stone = false;
+				}
 				
 			}
 		
