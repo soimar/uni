@@ -13,7 +13,9 @@ public class player : MonoBehaviour {
 	};
 	
 public GUITexture GUI_stone;
-public GameObject stone;
+public stone item_stone;
+
+public GameObject stone_prefab;
 	
 	bool item = false;
 	bool coll_stone = false;
@@ -180,10 +182,19 @@ public GameObject stone;
 		if(Input.GetKeyDown(KeyCode.X))
 		{
 			ani.SetTrigger("shoot");
-		
-			stone.gameObject.SetActive(true);
-			stone.transform.position = transform.position + transform.forward * 5;
-			stone.rigidbody2D.AddForce(new Vector2(transform.position.x, transform.position.y) * 2);
+			item = false;
+			coll_stone = false;
+			item_stone.transform.position = transform.position;
+			item_stone.gameObject.SetActive(true);
+			
+			
+			stone stoneNew = (stone)Instantiate(stone_prefab);
+			
+			Vector3 dir = Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(0,1,0);
+			dir.Normalize();
+			
+			stoneNew.Shoot(dir);
+			StartCoroutine("Wait2", 3);
 		}
 		
 		if(Input.GetKeyUp(KeyCode.X))
@@ -225,7 +236,7 @@ public GameObject stone;
 					
 				item = true;
 				GUI_stone.gameObject.SetActive(true);
-				stone.gameObject.SetActive(false);
+				item_stone.gameObject.SetActive(false);
 				
 			}
 			else if(item == true)
@@ -235,9 +246,9 @@ public GameObject stone;
 				
 				item = false;
 				GUI_stone.gameObject.SetActive(false);
-				stone.gameObject.SetActive(true);
+				item_stone.gameObject.SetActive(true);
 				
-				stone.transform.position = transform.position;
+				item_stone.transform.position = transform.position;
 				
 				coll_stone = false;
 				
@@ -340,6 +351,8 @@ public GameObject stone;
 			
 	
 	}
+	
+	
 	
 
 	

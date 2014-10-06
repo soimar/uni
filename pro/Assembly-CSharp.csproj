@@ -50,6 +50,7 @@
      <Compile Include="Assets\box_here.cs" />
      <Compile Include="Assets\player.cs" />
      <Compile Include="Assets\rgb.cs" />
+     <Compile Include="Assets\stone.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
