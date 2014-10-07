@@ -14,7 +14,7 @@ public class player : MonoBehaviour {
 	
 public GUITexture GUI_stone;
 public stone item_stone;
-
+	
 public GameObject stone_prefab;
 	
 	bool item = false;
@@ -185,15 +185,16 @@ public GameObject stone_prefab;
 			item = false;
 			coll_stone = false;
 			item_stone.transform.position = transform.position;
-			item_stone.gameObject.SetActive(true);
+			//item_stone.gameObject.SetActive(true);
 			
-			
-			stone stoneNew = (stone)Instantiate(stone_prefab);
+			Vector3 v = new Vector3(transform.position.x+2, transform.position.y+3, transform.position.z); 
+						
+			GameObject clone = (GameObject)Instantiate(stone_prefab, v,
+				Quaternion.Euler(0,0,0) );
 			
 			Vector3 dir = Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(0,1,0);
-			dir.Normalize();
-			
-			stoneNew.Shoot(dir);
+			dir.Normalize();			
+			clone.SendMessage("Shoot", dir);
 			StartCoroutine("Wait2", 3);
 		}
 		
