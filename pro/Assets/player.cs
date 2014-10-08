@@ -19,8 +19,7 @@ public GameObject stone_prefab;
 	
 	bool item = false;
 	bool coll_stone = false;
-	
-	
+
 		
 	PLAYER_STATE playerState = PLAYER_STATE.NORMAL;		
 		
@@ -186,16 +185,18 @@ public GameObject stone_prefab;
 			coll_stone = false;
 			item_stone.transform.position = transform.position;
 			//item_stone.gameObject.SetActive(true);
-			
-			Vector3 v = new Vector3(transform.position.x+2, transform.position.y+3, transform.position.z); 
 						
-			GameObject clone = (GameObject)Instantiate(stone_prefab, v,
-				Quaternion.Euler(0,0,0) );
-			
+			//Vector3 v = new Vector3(transform.position.x+2, transform.position.y+3, transform.position.z); 
 			Vector3 dir = Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(0,1,0);
+			Vector3 dir_clone = Quaternion.Euler(0,0,-45) * dir;
+			
+			GameObject clone = (GameObject)Instantiate(stone_prefab, dir_clone*3.5f + transform.position, Quaternion.Euler(0,0,0));
+						
 			dir.Normalize();			
 			clone.SendMessage("Shoot", dir);
 			StartCoroutine("Wait2", 3);
+			
+			
 		}
 		
 		if(Input.GetKeyUp(KeyCode.X))

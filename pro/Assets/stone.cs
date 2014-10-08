@@ -7,7 +7,7 @@ public class stone : MonoBehaviour {
 	public float m_speed = 30;
 	public float m_friction = 20;
 	public Vector3 m_direction;	
-
+	float clone_object = 0 ;
 	public float m_curSpeed;
 	
 	// Use this for initialization
@@ -35,6 +35,14 @@ public class stone : MonoBehaviour {
 			{
 				m_shoot = false;
 			}
+		}
+		
+		clone_object = Time.deltaTime;
+		
+		if(clone_object > 3)
+		{
+			Destroy(gameObject);
+			clone_object = 0;
 		}
 		
 	}

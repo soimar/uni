@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\stone.cs">
     <Files>
-      <File FileName="Assets\player.cs" Line="184" Column="16" />
+      <File FileName="Assets\player.cs" Line="24" Column="10" />
       <File FileName="Assets\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\box_here.cs" Line="1" Column="1" />
       <File FileName="Assets\rgb.cs" Line="1" Column="1" />
-      <File FileName="Assets\stone.cs" Line="23" Column="3" />
+      <File FileName="Assets\stone.cs" Line="35" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
