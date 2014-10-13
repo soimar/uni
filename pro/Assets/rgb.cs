@@ -10,31 +10,24 @@ public enum COLOR_STATE {
 
 public class rgb : MonoBehaviour {
 public GameObject char_0;	
+public GameObject stone;
 public Animator ani;
-
 		
 	COLOR_STATE ColorState = COLOR_STATE.RED;
-	
-	
-	
+		
 	// Use this for initialization
-	void Start () {
-	
+	void Start () {	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () {	
 	}
-	
-	
-	
-	
+		
 	void OnTriggerEnter2D(Collider2D collision)
 	{		
 		string colliderName = collision.collider2D.name;
 		
-		if(colliderName == "char_0")
+		if(colliderName == "stone")
 		{
 			if(ColorState == COLOR_STATE.RED)
 			{

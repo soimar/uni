@@ -181,21 +181,23 @@ public GameObject stone_prefab;
 		if(Input.GetKeyDown(KeyCode.X))
 		{
 			ani.SetTrigger("shoot");
-			item = false;
-			coll_stone = false;
-			item_stone.transform.position = transform.position;
-			//item_stone.gameObject.SetActive(true);
-						
-			//Vector3 v = new Vector3(transform.position.x+2, transform.position.y+3, transform.position.z); 
-			Vector3 dir = Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(0,1,0);
-			Vector3 dir_clone = Quaternion.Euler(0,0,-45) * dir;
-			
-			GameObject clone = (GameObject)Instantiate(stone_prefab, dir_clone*3.5f + transform.position, Quaternion.Euler(0,0,0));
-						
-			dir.Normalize();			
-			clone.SendMessage("Shoot", dir);
-			StartCoroutine("Wait2", 3);
-			
+			if (item == true)
+			{
+				ani.SetTrigger("shoot");
+				coll_stone = false;
+				item_stone.transform.position = transform.position;
+				//item_stone.gameObject.SetActive(true);
+							
+				//Vector3 v = new Vector3(transform.position.x+2, transform.position.y+3, transform.position.z); 
+				Vector3 dir = Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(0,1,0);
+				Vector3 dir_clone = Quaternion.Euler(0,0,-45) * dir;
+				
+				GameObject clone = (GameObject)Instantiate(stone_prefab, dir_clone*3.5f + transform.position, Quaternion.Euler(0,0,0));
+							
+				dir.Normalize();			
+				clone.SendMessage("Shoot", dir);
+				StartCoroutine("Wait2", 3);
+			}			
 			
 		}
 		
@@ -204,28 +206,8 @@ public GameObject stone_prefab;
 			playerState = PLAYER_STATE.NORMAL;
 		}
 		
-		
-		//jump
-		
-		if(Input.GetKeyDown(KeyCode.C))
-		{
-			if(playerState == PLAYER_STATE.NORMAL)
-			{
-				ani.SetBool("jump",true);
-				//ani.SetBool("normal",false);
-				playerState = PLAYER_STATE.JUMP;
-			}
-		}
-		
-		if(Input.GetKeyUp(KeyCode.C))
-		{
-			if(playerState == PLAYER_STATE.JUMP)
-			{
-				//ani.SetBool("normal",true);
-				ani.SetBool("jump",false);
-				playerState = PLAYER_STATE.NORMAL;
-			}
-		}
+	
+		//아이템 장착/해제 
 		
 		if(Input.GetKeyDown(KeyCode.Space))
 		{	
@@ -243,6 +225,8 @@ public GameObject stone_prefab;
 			}
 			else if(item == true)
 			{
+				print ("item release");
+				
 				ani.SetBool("item",false);
 				ani.SetBool("normal",true);
 				
