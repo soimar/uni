@@ -4,6 +4,7 @@ using System.Collections;
 public class box_here : MonoBehaviour {
 public GameObject box;
 public GameObject door;
+public GameObject door2;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public GameObject door;
 		{
 			box.SetActive(false);
 			door.SetActive(false);
+			door2.SetActive(false);
 			this.gameObject.SetActive(false);
 		}
 	}
