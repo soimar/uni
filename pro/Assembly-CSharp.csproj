@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\box_here.cs" />
+     <Compile Include="Assets\colli.cs" />
      <Compile Include="Assets\light.cs" />
      <Compile Include="Assets\player.cs" />
      <Compile Include="Assets\rgb.cs" />

@@ -17,7 +17,6 @@ public class stone : MonoBehaviour {
 	}
 	
 	public void Shoot(Vector3 direction) {
-		print ("shoot");
 		m_shoot = true;
 		m_stone_frefab = true;
 		m_direction = direction;		
