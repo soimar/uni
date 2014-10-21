@@ -1,16 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum BoxLightType
+{
+	Up,
+	Left,
+	Down	
+}
+
 public class light : MonoBehaviour {
+	public GameObject beamPrefab;
 	public GameObject beam;
-	public bool light_check = true;
-	GameObject clone_beam;
+	public BoxLightType type = BoxLightType.Up;
+	public Vector3 beamAngle = new Vector3(0,0,90);
+	public Vector3 beamEmitterPos = new Vector3(0,0,0);
+	public bool light_check = false;
 	
 	// Use this for initialization
 	void Start () {
 		
-		clone_beam = (GameObject)Instantiate(beam, transform.position ,Quaternion.Euler(0,0,90));
-		clone_beam.SendMessage ("SetLight", this);
+		beam = (GameObject)Instantiate(beamPrefab, transform.position,Quaternion.Euler(beamAngle));
+		beam.transform.position += beamEmitterPos;
+		beam.SendMessage ("SetLightPtr", this);
+		beam.SetActive(light_check);
 	}
 	
 	// Update is called once per frame
@@ -18,14 +30,27 @@ public class light : MonoBehaviour {
 		
 		if(light_check == true)
 		{
-			clone_beam.transform.localScale += new Vector3(0,0.2f,0);
+			beam.transform.localScale += new Vector3(0,0.15f,0);
 		}
 		
 	}
 	
-		void m_light()
+	void ShootBeam()
 	{	
-		light_check = false;
+		light_check = true;
+		beam.SetActive(true);
+		//beam.transform.localScale = new Vector3(2,2,2);
 	}
-
+	
+	void StopBeam( GameObject collision )
+	{
+		light_check = false;
+		
+		Vector3 len = transform.position - collision.transform.position;
+		
+		
+		
+		
+	}
+	
 }

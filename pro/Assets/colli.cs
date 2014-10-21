@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class colli : MonoBehaviour {
-	GameObject light;
+	public light lightBox;
 
 	// Use this for initialization
 	void Start () {
@@ -14,14 +14,33 @@ public class colli : MonoBehaviour {
 	
 	}
 
-	void SetLight( GameObject li)
+	void SetLightPtr( light li)
 	{
-		light = li;
+		lightBox = li;
 	}
+	
+	
 
-	void OnCollisionEnter2D(Collision2D collision)
+//	void OnCollisionEnter2D(Collision2D collision)
+	void OnTriggerStay2D(Collider2D collision)
 	{	
-		light.SendMessage("m_light");
+		if(collision.gameObject.tag == "Player")
+		{
+			print ("player");
+			lightBox.SendMessage("ShootBeam");
+		}
+		else if (collision.gameObject.tag == "wall")
+		{
+			lightBox.SendMessage("StopBeam", collision.gameObject);
+		}
+		else if (collision.gameObject.tag == "light_box")
+		{
+			print ("light box");
+			lightBox.SendMessage("StopBeam", collision.gameObject);
+			collision.gameObject.SendMessage("ShootBeam");
+		}
+		
+		
 	}
 
 }
