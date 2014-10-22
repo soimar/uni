@@ -309,7 +309,7 @@ public GameObject stone_prefab;
 	{		
 			if(playerState == PLAYER_STATE.PUSH)
 			{
-				if(collision.gameObject.tag == "box" || collision.gameObject.tag == "light_box1" || collision.gameObject.tag == "light_box2" || collision.gameObject.tag == "light_box3")
+				if(collision.gameObject.tag == "box" || collision.gameObject.tag == "light_box")
 				{
 					DistanceJoint2D joint = GetComponent<DistanceJoint2D>();
 					joint.enabled = true;

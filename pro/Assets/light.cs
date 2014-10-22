@@ -39,18 +39,27 @@ public class light : MonoBehaviour {
 	{	
 		light_check = true;
 		beam.SetActive(true);
-		//beam.transform.localScale = new Vector3(2,2,2);
 	}
+	
+	void PlayerBeam()
+	{
+		beam.transform.localScale = new Vector3(2,2,2);
+		light_check = true;
+	}
+	
 	
 	void StopBeam( GameObject collision )
 	{
 		light_check = false;
 		
-		Vector3 len = transform.position - collision.transform.position;
-		
-		
-		
-		
+		Vector3 len = transform.position - collision.transform.position;	
 	}
+	
+	void EndBeam()
+	{
+		//light_check = false;
+		beam.SetActive(false);
+	}
+	
 	
 }

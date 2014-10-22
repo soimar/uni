@@ -22,12 +22,12 @@ public class colli : MonoBehaviour {
 	
 
 //	void OnCollisionEnter2D(Collision2D collision)
-	void OnTriggerStay2D(Collider2D collision)
+	void OnTriggerEnter2D(Collider2D collision)
 	{	
 		if(collision.gameObject.tag == "Player")
 		{
 			print ("player");
-			lightBox.SendMessage("ShootBeam");
+			lightBox.SendMessage("PlayerBeam");
 		}
 		else if (collision.gameObject.tag == "wall")
 		{
@@ -35,12 +35,22 @@ public class colli : MonoBehaviour {
 		}
 		else if (collision.gameObject.tag == "light_box")
 		{
-			print ("light box");
 			lightBox.SendMessage("StopBeam", collision.gameObject);
 			collision.gameObject.SendMessage("ShootBeam");
 		}
 		
 		
 	}
+	
+	void OnTriggerExit2D(Collider2D collision)
+	{	
+		if (collision.gameObject.tag == "light_box")
+		{
+			lightBox.SendMessage("EndBeam", collision.gameObject);
+		}
+		
+	}
+	
+
 
 }
