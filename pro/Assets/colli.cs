@@ -3,7 +3,8 @@ using System.Collections;
 
 public class colli : MonoBehaviour {
 	public light lightBox;
-
+	bool Player_Trigger = false;
+	light beam;
 	// Use this for initialization
 	void Start () {
 	
@@ -28,6 +29,7 @@ public class colli : MonoBehaviour {
 		{
 			print ("player");
 			lightBox.SendMessage("PlayerBeam");
+			Player_Trigger = true;
 		}
 		else if (collision.gameObject.tag == "wall")
 		{
@@ -44,10 +46,17 @@ public class colli : MonoBehaviour {
 	
 	void OnTriggerExit2D(Collider2D collision)
 	{	
-		if (collision.gameObject.tag == "light_box")
+		if (collision.gameObject.tag == "light_box" && Player_Trigger == true)
 		{
-			lightBox.SendMessage("EndBeam", collision.gameObject);
+			print("BoxExit");
+			lightBox.SendMessage("EndBeam");
 		}
+
+		if(collision.gameObject.tag == "Player" && collision.gameObject.tag == "light_box" && Player_Trigger == true)
+		{
+			lightBox.SendMessage("StartBeam");
+		}
+
 		
 	}
 	

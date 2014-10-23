@@ -54,11 +54,18 @@ public class light : MonoBehaviour {
 		
 		Vector3 len = transform.position - collision.transform.position;	
 	}
-	
+
 	void EndBeam()
 	{
-		//light_check = false;
-		beam.SetActive(false);
+		Destroy(beam.gameObject);
+		light_check = false;
+	}
+
+	void StartBeam()
+	{
+		beam = (GameObject)Instantiate(beamPrefab, transform.position,Quaternion.Euler(beamAngle));
+		beam.transform.position += beamEmitterPos;
+		light_check = true;
 	}
 	
 	
