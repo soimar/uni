@@ -37,10 +37,34 @@ public class colli : MonoBehaviour {
 		}
 		else if (collision.gameObject.tag == "light_box")
 		{
-			lightBox.SendMessage("StopBeam", collision.gameObject);
-			collision.gameObject.SendMessage("ShootBeam");
+			if (lightBox.name != collision.gameObject.name)
+			{
+				lightBox.SendMessage("StopBeam", collision.gameObject);
+			}
+			//			collision.gameObject.SendMessage("ShootBeam");
 		}
-		
+	}
+
+	void OnTriggerStay2D(Collider2D collision)
+	{
+		if(collision.gameObject.tag == "Player")
+		{
+			print ("player");
+			lightBox.SendMessage("PlayerBeam");
+			Player_Trigger = true;
+		}
+		else if (collision.gameObject.tag == "wall")
+		{
+			lightBox.SendMessage("StopBeam", collision.gameObject);
+		}
+		else if (collision.gameObject.tag == "light_box")
+		{
+			if (lightBox.name != collision.gameObject.name)
+			{
+				lightBox.SendMessage("StopBeam", collision.gameObject);
+			}
+			//			collision.gameObject.SendMessage("ShootBeam");
+		}
 		
 	}
 	
@@ -48,14 +72,14 @@ public class colli : MonoBehaviour {
 	{	
 		if (collision.gameObject.tag == "light_box" && Player_Trigger == true)
 		{
-			print("BoxExit");
-			lightBox.SendMessage("EndBeam");
+//			print("BoxExit");
+//			lightBox.SendMessage("EndBeam");
 		}
 
-		if(collision.gameObject.tag == "Player" && collision.gameObject.tag == "light_box" && Player_Trigger == true)
-		{
-			lightBox.SendMessage("StartBeam");
-		}
+//		if(collision.gameObject.tag == "Player" && collision.gameObject.tag == "light_box" && Player_Trigger == true)
+//		{
+//			lightBox.SendMessage("StartBeam");
+//		}
 
 		
 	}

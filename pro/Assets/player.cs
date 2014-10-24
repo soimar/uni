@@ -317,7 +317,6 @@ public GameObject stone_prefab;
 					collision.gameObject.rigidbody2D.mass = 0;
 				
 					joint.connectedBody = collision.rigidbody;
-				
 				}
 			}
 			
