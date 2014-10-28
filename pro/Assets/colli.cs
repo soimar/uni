@@ -27,7 +27,6 @@ public class colli : MonoBehaviour {
 	{	
 		if(collision.gameObject.tag == "Player")
 		{
-			print ("player");
 			lightBox.SendMessage("PlayerBeam");
 			Player_Trigger = true;
 		}
@@ -42,6 +41,10 @@ public class colli : MonoBehaviour {
 				lightBox.SendMessage("StopBeam", collision.gameObject);
 			}
 			//			collision.gameObject.SendMessage("ShootBeam");
+		}
+		else if (collision.gameObject.tag == "end")
+		{
+			lightBox.SendMessage("EndHere", collision.gameObject);
 		}
 	}
 
