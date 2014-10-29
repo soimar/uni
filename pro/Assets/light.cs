@@ -21,6 +21,11 @@ public class light : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		///beam.SendMessage ("Set", this);
+		beam = (GameObject)Instantiate(beamPrefab, transform.position, Quaternion.Euler(beamAngle));
+		beam.name = "beam_" + name;
+		beam.SendMessage ("SetLightPtr", this);
+		beam.SetActive(light_check);
 	}
 	
 	// Update is called once per frame
@@ -33,12 +38,12 @@ public class light : MonoBehaviour {
 
 	}
 
+
+
 	void Beam()
 	{
-		beam = (GameObject)Instantiate(beamPrefab, transform.position, Quaternion.Euler(beamAngle));
-		beam.name = "beam_" + name;
+		light_check = true;
 		beam.transform.position += beamEmitterPos;
-		beam.SendMessage ("SetLightPtr", this);
 		beam.SetActive(light_check);
 	}
 
