@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public rgb box_3;
 	public light beam_start;
 	public player hero;
+	
+	public GameObject UI;
 
 	public GameObject item_stone;
 	
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
 				transform.position = new Vector3 (hero.transform.position.x, hero.transform.position.y,
 		                                   transform.position.z);
+
+		UI.transform.position = hero.transform.position - new Vector3 (0, 16, 0);
 
 
 				if (box_1.ColorState == COLOR_STATE.RED) {

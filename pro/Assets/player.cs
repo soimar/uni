@@ -12,7 +12,7 @@ public class player : MonoBehaviour {
 		PUSH
 	};
 	
-public GUITexture GUI_stone;
+public GameObject GUI_stone;
 public stone item_stone;
 	
 public GameObject stone_prefab;
