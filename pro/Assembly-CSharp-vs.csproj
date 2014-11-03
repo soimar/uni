@@ -172,6 +172,7 @@
      <Compile Include="Assets\player.cs" />
      <Compile Include="Assets\rgb.cs" />
      <Compile Include="Assets\rgblink.cs" />
+     <Compile Include="Assets\start_btt.cs" />
      <Compile Include="Assets\stone.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
